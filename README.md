@@ -1,7 +1,5 @@
 # hw-backend-2
 
-Репозиторий для выполнения задания №1.
-
 Папка для заданий [cars](./cars):
 - cars-pagination
 - cars-id
