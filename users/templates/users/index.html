@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Пользователи</title>
   </head>
   <body>
-    <!-- (сюда писать решение) -->
-    
-    <!-- (конец решения) -->
+    <h1>Список пользователей</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Данные</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in result %}
+        <tr>
+          <td>{{ i }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </body>
 </html>
