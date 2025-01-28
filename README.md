@@ -1,10 +1,3 @@
-# hw-backend-2
+# hw-backend-3
 
-Папка для заданий [cars](./cars):
-- cars-pagination
-- cars-id
-
-Папка для заданий [users](./users):
-- users-all
-- users-id
-- users-pagination 💎
+Code is taken from hw-backend-2
