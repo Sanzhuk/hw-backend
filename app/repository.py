@@ -43,6 +43,9 @@ class BooksRepository:
             },
         ]
 
+    def get_len(self):
+        return len(self.books)
+    
     def get_all(self):
         return self.books
 
@@ -55,5 +58,6 @@ class BooksRepository:
     def save(self, book):
         # код писать сюда
 
+        self.books.append(book)
         # конец
         return book

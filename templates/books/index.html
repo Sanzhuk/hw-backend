@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Кітап.kz - Список</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <a href="/books/new">Добавить книгу</a>
-    
+
     <!-- код писать сюда -->
 
+    <table border="1">
+      {% for book in books %}
+      <tr>
+        <td>{{ book['id'] }}</td>
+        <td>{{book['title']}}</td>
+        <td>{{book['author']}}</td>
+        <td>{{book['year']}}</td>
+        <td>{{book['total_pages']}}</td>
+        <td>{{book['genre']}}</td>
+      </tr>
+      {% endfor %}
+    </table>
 
     <!-- конец -->
-</body>
-
+  </body>
 </html>

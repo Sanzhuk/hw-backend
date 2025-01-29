@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <td>{{ result['book']['id'] }}</td>
+        <td>{{result['book']['title']}}</td>
+        <td>{{result['book']['author']}}</td>
+        <td>{{result['book']['year']}}</td>
+        <td>{{result['book']['total_pages']}}</td>
+        <td>{{result['book']['genre']}}</td>
+      </tr>
+    </table>
+    {% if 'prev_book' is in result %}
+    <a href={{result['prev_book']}}>Previous Book</a>
+    {% endif %}
+    
+    {% if 'next_book' is in result %}
+    <a href={{result['next_book']}}>Next Book</a>
+    {% endif %}
+  </body>
+</html>
