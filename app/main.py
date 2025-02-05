@@ -9,11 +9,78 @@ app = FastAPI()
 templates = Jinja2Templates(directory="../templates")
 repository = BooksRepository()
 
+def find_book_by_id(id):
+    books = repository.get_all()
+    present_book = None
+    
+    for book in books:
+        if book['id'] == id:
+            present_book = book
+            
+    return present_book
+
 
 @app.get("/")
 def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+
+@app.get("/books/{id}/edit")
+def get_book_form_by_id(request: Request, id: int):
+    book = find_book_by_id(id)
+    
+    if book is None:
+        raise HTTPException(status_code=404, detail="Not Found")
+    
+    return_dict = {}
+    return_dict['book'] = book
+    
+    return templates.TemplateResponse(
+        "books/book_update_form.html",
+        {"request": request, 'result': return_dict}
+    )
+    
+@app.post("/books/{id}/edit")
+def update_book_form_by_id(
+    id: int, 
+    title: str = Form(...),
+    author: str = Form(...),
+    year: str = Form(...),
+    total_pages: str = Form(...),
+    genre: str = Form(...)
+):    
+    book = find_book_by_id(id)
+    
+    if book is None:
+        raise HTTPException(status_code=404, detail="Not Found")
+    
+    updated_book = {
+        'title': title,
+        'author': author,
+        'year': year,
+        'total_pages': total_pages,
+        'genre': genre
+    }
+    
+    book['title'] = updated_book['title']
+    book['author'] = updated_book['author']
+    book['year'] = updated_book['year']
+    book['total_pages'] = updated_book['total_pages']
+    book['genre'] = updated_book['genre']
+    
+    return RedirectResponse(url=f"/books/{id}", status_code=303)
+    
+@app.post("/books/{id}/delete")
+def delete_book_by_id(
+    id: int  
+):
+    book = find_book_by_id(id)
+    
+    if book is None:
+        raise HTTPException(status_code=404, detail="Not Found")
+    
+    repository.delete(id)
+    return RedirectResponse(url="/books", status_code=303)
 
 @app.get("/books/new")
 def add_book_form(request: Request):
@@ -53,16 +120,6 @@ def get_books(request: Request, page: int = 0):
         "books/index.html",
         {"request": request, "books": books},
     )
-
-def find_book_by_id(id):
-    books = repository.get_all()
-    present_book = None
-    
-    for book in books:
-        if book['id'] == id:
-            present_book = book
-            
-    return present_book
 
 @app.get("/books/{id}")
 def get_book_by_id(request: Request, id: int):

@@ -55,6 +55,11 @@ class BooksRepository:
         # конец
         return None
 
+    def delete(self, id):
+        data = [d for d in self.books if d["id"] != id]
+        self.books = data
+        
+    
     def save(self, book):
         # код писать сюда
 

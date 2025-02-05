@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Update a book</h1>
+    <form method="post" action="/books/{{ result['book']['id'] }}/edit">
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        value="{{ result['book']['title'] }}"
+        required
+      /><br /><br />
+
+      <label for="author">Author:</label>
+      <input
+        type="text"
+        id="author"
+        name="author"
+        value="{{ result['book']['author'] }}"
+        required
+      /><br /><br />
+
+      <label for="year">Year:</label>
+      <input
+        type="text"
+        id="year"
+        name="year"
+        value="{{ result['book']['year'] }}"
+        required
+      /><br /><br />
+
+      <label for="total_pages">Total pages:</label>
+      <input
+        type="text"
+        id="total_pages"
+        name="total_pages"
+        value="{{ result['book']['total_pages'] }}"
+        required
+      /><br /><br />
+
+      <label for="genre">Genre:</label>
+      <input
+        type="text"
+        id="genre"
+        name="genre"
+        value="{{ result['book']['genre'] }}"
+        required
+      /><br /><br />
+
+      <button type="submit">Update book</button>
+    </form>
+
+    <form
+      method="post"
+      action="/books/{{ result['book']['id'] }}/delete"
+      onsubmit="return confirm('Are you sure you want to delete this book?');"
+    >
+      <button type="submit" style="background-color: red; color: white">
+        Delete Book
+      </button>
+    </form>
+  </body>
+</html>
